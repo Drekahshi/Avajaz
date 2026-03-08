@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVAJAZ — People-Powered Green Economy</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── SIDEBAR NAV ─────────────────────────────────────────── -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-mark">AJ</div>
+      <span class="logo-text">AVAJAZ</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#" class="nav-item active" data-page="dashboard">
+        <span class="nav-icon">◈</span><span>Dashboard</span>
+      </a></li>
+      <li><a href="#" class="nav-item" data-page="verification">
+        <span class="nav-icon">◉</span><span>Daily Task</span>
+      </a></li>
+      <li><a href="chess.html" class="nav-item" data-page="chess-external">
+        <span class="nav-icon">♟</span><span>Chess Staking</span>
+      </a></li>
+      <li><a href="#" class="nav-item" data-page="predictions">
+        <span class="nav-icon">◎</span><span>Polyavajaz</span>
+      </a></li>
+      <li><a href="#" class="nav-item" data-page="profile">
+        <span class="nav-icon">◐</span><span>My Profile</span>
+      </a></li>
+      <li><a href="#" class="nav-item" data-page="wallet">
+        <span class="nav-icon">◈</span><span>Wallet</span>
+      </a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="tier-badge beginner">BEGINNER</div>
+      <div class="sidebar-user">
+        <div class="user-avatar">JM</div>
+        <div>
+          <div class="user-name">James Mwangi</div>
+          <div class="user-avax">2.43 AVAX</div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── MOBILE TOP BAR ──────────────────────────────────────── -->
+  <header class="topbar">
+    <button class="hamburger" id="hamburger">☰</button>
+    <div class="topbar-logo">AVAJAZ</div>
+    <div class="topbar-avax">2.43 AVAX</div>
+  </header>
+
+  <!-- ── MAIN CONTENT ────────────────────────────────────────── -->
+  <main class="main-content">
+
+    <!-- PAGE: DASHBOARD -->
+    <section class="page active" id="page-dashboard">
+      <div class="page-header">
+        <div>
+          <div class="page-eyebrow">Good morning 🌿</div>
+          <h1 class="page-title">James Mwangi</h1>
+        </div>
+        <div class="header-stat">
+          <div class="stat-number">47</div>
+          <div class="stat-label">Trees Verified</div>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-grid">
+        <div class="stat-card accent-orange">
+          <div class="stat-card-icon">🌳</div>
+          <div class="stat-card-value">47</div>
+          <div class="stat-card-label">Trees Verified</div>
+          <div class="stat-card-change">+3 this week</div>
+        </div>
+        <div class="stat-card accent-gold">
+          <div class="stat-card-icon">◈</div>
+          <div class="stat-card-value">2.43</div>
+          <div class="stat-card-label">AVAX Earned</div>
+          <div class="stat-card-change">≈ KES 4,200</div>
+        </div>
+        <div class="stat-card accent-terracotta">
+          <div class="stat-card-icon">♟</div>
+          <div class="stat-card-value">12</div>
+          <div class="stat-card-label">Chess Wins</div>
+          <div class="stat-card-change">ELO 1,340</div>
+        </div>
+        <div class="stat-card accent-green">
+          <div class="stat-card-icon">◎</div>
+          <div class="stat-card-value">8/10</div>
+          <div class="stat-card-label">Correct Predictions</div>
+          <div class="stat-card-change">80% accuracy</div>
+        </div>
+      </div>
+
+      <!-- Activity + Map row -->
+      <div class="two-col">
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Recent Activity</h2>
+            <button class="btn-ghost">View all →</button>
+          </div>
+          <ul class="activity-list">
+            <li class="activity-item">
+              <div class="activity-dot verified"></div>
+              <div class="activity-body">
+                <div class="activity-desc">Verified tree #TZ-00823 — Photo</div>
+                <div class="activity-meta">2 hours ago · +0.02 AVAX</div>
+              </div>
+              <div class="activity-badge green">Approved</div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-dot chess"></div>
+              <div class="activity-body">
+                <div class="activity-desc">Chess win vs. Amina K. (ELO 1290)</div>
+                <div class="activity-meta">5 hours ago · +0.06 AVAX</div>
+              </div>
+              <div class="activity-badge gold">Won</div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-dot prediction"></div>
+              <div class="activity-body">
+                <div class="activity-desc">Predicted Kiambu coffee survival > 85%</div>
+                <div class="activity-meta">Yesterday · 0.1 AVAX staked</div>
+              </div>
+              <div class="activity-badge orange">Pending</div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-dot verified"></div>
+              <div class="activity-body">
+                <div class="activity-desc">Verified tree #TZ-00801 — Physical</div>
+                <div class="activity-meta">2 days ago · +0.05 AVAX</div>
+              </div>
+              <div class="activity-badge green">Approved</div>
+            </li>
+            <li class="activity-item">
+              <div class="activity-dot rejected"></div>
+              <div class="activity-body">
+                <div class="activity-desc">Verification #TZ-00789 rejected</div>
+                <div class="activity-meta">3 days ago · GPS mismatch</div>
+              </div>
+              <div class="activity-badge red">Rejected</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2 class="card-title">Nearby Tasks</h2>
+            <button class="btn-ghost">See map →</button>
+          </div>
+          <div class="map-placeholder">
+            <div class="map-bg">
+              <div class="map-pin" style="top:38%;left:45%">
+                <div class="pin-dot orange"></div>
+                <div class="pin-label">3 tasks</div>
+              </div>
+              <div class="map-pin" style="top:55%;left:62%">
+                <div class="pin-dot gold"></div>
+                <div class="pin-label">1 task</div>
+              </div>
+              <div class="map-pin" style="top:28%;left:30%">
+                <div class="pin-dot green"></div>
+                <div class="pin-label">5 tasks</div>
+              </div>
+            </div>
+            <div class="map-footer">9 verification tasks within 5km</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier Progress -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Tier Progress</h2>
+          <div class="tier-badge intermediate-sm">→ INTERMEDIATE</div>
+        </div>
+        <div class="tier-progress-grid">
+          <div class="tier-criterion">
+            <div class="criterion-label">Verifications Approved</div>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="width:47%">
+                <span class="progress-fill orange"></span>
+              </div>
+              <div class="criterion-count">47 / 10 ✓</div>
+            </div>
+          </div>
+          <div class="tier-criterion">
+            <div class="criterion-label">Chess Games Played</div>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" style="width:100%">
+                <span class="progress-fill gold"></span>
+              </div>
+              <div class="criterion-count">5 / 5 ✓</div>
+            </div>
+          </div>
+        </div>
+        <div class="tier-unlock-msg">🎉 You qualify for Intermediate! <button class="btn-primary small">Claim Upgrade</button></div>
+      </div>
+    </section>
+
+    <!-- PAGE: VERIFICATION (Daily Task) -->
+    <section class="page" id="page-verification">
+
+      <!-- ── GAMIFICATION HUD ────────────────────────────── -->
+      <div class="gam-hud">
+        <!-- Level + XP -->
+        <div class="gam-level-block">
+          <div class="gam-level-pill" id="gamLevelPill">LVL 3</div>
+          <div class="gam-xp-col">
+            <div class="gam-xp-label">
+              <span>Verifier XP</span>
+              <span id="gamXpText">340 / 500 XP</span>
+            </div>
+            <div class="gam-xp-bar-wrap">
+              <div class="gam-xp-bar" id="gamXpBar" style="width:68%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Streak -->
+        <div class="gam-streak-block" id="gamStreakBlock">
+          <div class="gam-streak-flame" id="gamStreakFlame">🔥</div>
+          <div class="gam-streak-col">
+            <div class="gam-streak-num" id="gamStreakNum">5</div>
+            <div class="gam-streak-label">Day Streak</div>
+          </div>
+        </div>
+
+        <!-- Combo -->
+        <div class="gam-combo-block" id="gamComboBlock">
+          <div class="gam-combo-badge" id="gamComboBadge">⚡ 1×</div>
+          <div class="gam-combo-label">Combo</div>
+          <div class="gam-combo-timer-wrap" id="gamComboTimerWrap" style="display:none">
+            <div class="gam-combo-timer-bar" id="gamComboTimerBar"></div>
+          </div>
+        </div>
+
+        <!-- Today's count -->
+        <div class="gam-today-block">
+          <div class="gam-today-num" id="gamTodayNum">0</div>
+          <div class="gam-today-label">Verified Today</div>
+          <div class="gam-today-stars" id="gamTodayStars">☆☆☆</div>
+        </div>
+
+        <!-- AVAX earned today -->
+        <div class="gam-avax-block">
+          <div class="gam-avax-num" id="gamAvaxNum">0.00</div>
+          <div class="gam-avax-label">AVAX Today</div>
+        </div>
+      </div>
+
+      <!-- ── DAILY CHALLENGES STRIP ──────────────────────── -->
+      <div class="challenge-strip" id="challengeStrip">
+        <div class="challenge-title">⚔️ Daily Challenges</div>
+        <div class="challenge-list" id="challengeList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- ── ACHIEVEMENTS TICKER ─────────────────────────── -->
+      <div class="achievement-ticker" id="achievementTicker" style="display:none">
+        <div class="ticker-inner" id="tickerInner"></div>
+      </div>
+
+      <!-- ── PAGE HEADER ─────────────────────────────────── -->
+      <div class="page-header" style="margin-top:8px;">
+        <div>
+          <div class="page-eyebrow">Field Work · Image Verification</div>
+          <h1 class="page-title">Daily Task</h1>
+        </div>
+        <div class="verify-count-badge" id="verifyCountBadge">0 / 3 Today</div>
+      </div>
+
+      <!-- ── GROUP TABS ──────────────────────────────────── -->
+      <div class="group-tabs" id="groupTabs">
+        <button class="group-tab active" data-group="nursery">🌱 Nursery &amp; Seedling <span class="tab-count" id="tc-nursery">10</span></button>
+        <button class="group-tab" data-group="agroforest">🌳 Agroforestry <span class="tab-count" id="tc-agroforest">12</span></button>
+        <button class="group-tab" data-group="beekeeping">🍯 Bee Keeping <span class="tab-count" id="tc-beekeeping">11</span></button>
+        <button class="group-tab" data-group="ecotourism">🦋 Ecotourism <span class="tab-count" id="tc-ecotourism">5</span></button>
+      </div>
+
+      <!-- ── MAIN LAYOUT ──────────────────────────────────── -->
+      <div class="verify-layout">
+        <!-- LEFT: Image task cards grid -->
+        <div>
+          <div class="verify-task-list" id="verifyTaskList"><!-- JS renders --></div>
+        </div>
+
+        <!-- RIGHT: Gamified submission panel -->
+        <div class="card submit-panel" id="submitPanel">
+          <!-- Image preview -->
+          <div class="verify-img-preview" id="verifyImgPreview">
+            <div class="verify-img-placeholder">
+              <div class="vip-icon">🎯</div>
+              <div class="vip-text">Pick an image to start earning XP &amp; AVAX</div>
+            </div>
+          </div>
+
+          <div id="verifyFormContent" style="display:none;">
+            <!-- ── STEP INDICATOR ────────────────────────────── -->
+            <div class="step-indicator">
+              <div class="step-dot active" id="dot1">1</div>
+              <div class="step-line"></div>
+              <div class="step-dot" id="dot2">2</div>
+              <div class="step-line"></div>
+              <div class="step-dot" id="dot3">3</div>
+            </div>
+            <div class="step-label" id="stepLabel">Step 1: Annotate Image</div>
+
+            <!-- ── STEP 1: ANNOTATION ────────────────────────── -->
+            <div id="step1Content">
+              <div class="annot-canvas-wrap" id="annotCanvasWrap">
+                <img id="annotImage" src="" alt="Annotate" />
+                <canvas id="annotCanvas"></canvas>
+                <div class="annot-toolbar">
+                  <button class="annot-tool active" data-tool="box" title="Draw Box">🔲</button>
+                  <button class="annot-tool" data-tool="point" title="Add Point">📍</button>
+                  <button class="annot-tool" data-tool="label" title="Add Label">🏷️</button>
+                  <div class="annot-divider"></div>
+                  <button class="annot-tool" id="clearAnnot" title="Clear All">🗑️</button>
+                </div>
+              </div>
+              <div class="annot-instruction">Mark the trees, hives, or features seen in the image.</div>
+              <button class="btn-primary full" id="toAiCheckBtn">Analyze with AI →</button>
+            </div>
+
+            <!-- ── STEP 2: AI CHECK ──────────────────────────── -->
+            <div id="step2Content" style="display:none;">
+              <div class="ai-analysis-box">
+                <div class="ai-scanner-line"></div>
+                <div class="ai-status-text" id="aiStatusText">AI Analyzing Annotations...</div>
+                <div class="ai-progress-wrap">
+                  <div class="ai-progress-bar" id="aiProgressBar"></div>
+                </div>
+              </div>
+              
+              <div id="aiResultCard" style="display:none;">
+                <div class="ai-verdict-header">
+                  <div class="ai-score-ring">
+                    <span id="aiScoreVal">0</span>%
+                  </div>
+                  <div class="ai-verdict-meta">
+                    <div class="ai-verdict-title" id="aiVerdictTitle">Analysis Complete</div>
+                    <div class="ai-verdict-sub" id="aiVerdictSub">High confidence match</div>
+                  </div>
+                </div>
+                <div class="ai-feedback-text" id="aiFeedbackText"></div>
+                <button class="btn-primary full" id="toSubmitBtn">Proceed to Submit →</button>
+                <button class="btn-ghost full" id="backToAnnotBtn">← Re-annotate</button>
+              </div>
+            </div>
+
+            <!-- ── STEP 3: SUBMIT ────────────────────────────── -->
+            <div id="step3Content" style="display:none;">
+              <!-- Reward preview bar -->
+              <div class="reward-preview-bar" id="rewardPreviewBar">
+                <div class="rpb-task">
+                  <div class="stask-id" id="staskId">—</div>
+                  <div class="stask-meta" id="staskMeta"></div>
+                </div>
+                <div class="rpb-earn">
+                  <div class="rpb-avax" id="staskReward">+0.00 AVAX</div>
+                  <div class="rpb-xp"  id="staskXp">+50 XP</div>
+                </div>
+              </div>
+
+              <div class="form-group" style="padding: 16px 20px 0;">
+                <label class="form-label">Final Observations</label>
+                <textarea class="form-input" id="finalNotes" rows="2" placeholder="Confirm any final details..."></textarea>
+              </div>
+
+              <!-- Submit button -->
+              <div style="padding: 0 20px 20px;">
+                <button class="btn-submit-gam" id="submitVerifyBtn">
+                  <span class="sbg-icon">⚡</span>
+                  <span class="sbg-text">Submit &amp; Earn</span>
+                  <span class="sbg-earn" id="sbgEarn">+0.02 AVAX · +50 XP</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── LEVEL-UP OVERLAY (hidden until triggered) ───── -->
+      <div class="levelup-overlay" id="levelupOverlay" style="display:none">
+        <div class="levelup-card">
+          <div class="lu-burst" id="luBurst"></div>
+          <div class="lu-label">LEVEL UP!</div>
+          <div class="lu-level" id="luLevel">4</div>
+          <div class="lu-sub">You've unlocked new abilities</div>
+          <button class="lu-close" onclick="document.getElementById('levelupOverlay').style.display='none'">Continue →</button>
+        </div>
+      </div>
+
+      <!-- ── ACHIEVEMENT POP (injected by JS) ───────────── -->
+      <div id="achievementPopZone"></div>
+
+    </section>
+
+    <!-- PAGE: CHESS -->
+    <section class="page" id="page-chess">
+      <div class="page-header">
+        <div>
+          <div class="page-eyebrow">Chess Staking</div>
+          <h1 class="page-title">Play & Earn</h1>
+        </div>
+        <div class="elo-display">ELO <span>1,340</span></div>
+      </div>
+
+      <div class="chess-layout">
+        <!-- Board -->
+        <div class="card chess-card">
+          <div class="chess-board" id="chessBoard"></div>
+          <div class="chess-controls">
+            <div class="player-row bottom-player">
+              <div class="player-avatar">JM</div>
+              <div>
+                <div class="player-name">James Mwangi (You)</div>
+                <div class="player-elo">ELO 1,340</div>
+              </div>
+              <div class="player-timer">04:32</div>
+            </div>
+            <div class="chess-action-row">
+              <button class="btn-ghost small">Offer Draw</button>
+              <button class="btn-ghost small danger">Resign</button>
+            </div>
+            <div class="player-row top-player">
+              <div class="player-avatar opp">AK</div>
+              <div>
+                <div class="player-name">Amina Koech</div>
+                <div class="player-elo">ELO 1,290</div>
+              </div>
+              <div class="player-timer thinking">02:18</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side panel -->
+        <div class="chess-side">
+          <div class="card stake-card">
+            <div class="stake-label">Current Stake</div>
+            <div class="stake-amount">0.10 AVAX</div>
+            <div class="stake-note">Win → +0.12 AVAX · Lose → full refund</div>
+            <div class="capital-preserve-badge">🛡 Capital Preserved</div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title small">Find New Match</h3>
+            <div class="form-group">
+              <label class="form-label">Mode</label>
+              <select class="form-input">
+                <option>Standard Ranked</option>
+                <option>ELO-Weighted (Intermediate+)</option>
+                <option>Gauntlet (Intermediate+)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Stake Amount</label>
+              <div class="stake-input-row">
+                <input class="form-input" type="number" placeholder="0.01" min="0.01" max="0.10" />
+                <span class="avax-label">AVAX</span>
+              </div>
+              <div class="tier-limit-note">Beginner limit: 0.01–0.10 AVAX</div>
+            </div>
+            <button class="btn-primary full">Find Opponent →</button>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title small">Move History</h3>
+            <div class="move-list">
+              <div class="move-row"><span class="move-num">1.</span><span>e4</span><span>e5</span></div>
+              <div class="move-row"><span class="move-num">2.</span><span>Nf3</span><span>Nc6</span></div>
+              <div class="move-row"><span class="move-num">3.</span><span>Bb5</span><span>a6</span></div>
+              <div class="move-row active"><span class="move-num">4.</span><span>Ba4</span><span>—</span></div>
+            </div>
+          </div>
+
+          <div class="card leaderboard-mini">
+            <h3 class="card-title small">Top Verifiers</h3>
+            <ol class="leaderboard-list">
+              <li><span class="lb-rank gold">1</span><span class="lb-name">David N.</span><span class="lb-elo">1,502</span></li>
+              <li><span class="lb-rank silver">2</span><span class="lb-name">Fatuma A.</span><span class="lb-elo">1,470</span></li>
+              <li><span class="lb-rank bronze">3</span><span class="lb-name">James M.</span><span class="lb-elo">1,340</span></li>
+              <li><span class="lb-rank">4</span><span class="lb-name">Grace N.</span><span class="lb-elo">1,298</span></li>
+              <li><span class="lb-rank">5</span><span class="lb-name">Amina K.</span><span class="lb-elo">1,290</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE: PREDICTIONS -->
+    <section class="page" id="page-predictions">
+      <div class="page-header">
+        <div>
+          <div class="page-eyebrow">Prediction Markets</div>
+          <h1 class="page-title">Forecast & Earn</h1>
+        </div>
+        <button class="btn-primary">+ Propose Market</button>
+      </div>
+
+      <div class="markets-grid">
+        <div class="market-card featured">
+          <div class="market-category">🌿 Tree Survival</div>
+          <div class="market-title">Kiambu coffee trees survival rate above 85% by June 2026</div>
+          <div class="market-meta">Resolves Jun 30, 2026 · 142 stakers</div>
+          <div class="market-options">
+            <button class="market-opt yes active">
+              <span class="opt-label">Yes</span>
+              <span class="opt-pct">67%</span>
+            </button>
+            <button class="market-opt no">
+              <span class="opt-label">No</span>
+              <span class="opt-pct">33%</span>
+            </button>
+          </div>
+          <div class="stake-row">
+            <input class="form-input small" type="number" placeholder="0.05" />
+            <span class="avax-label">AVAX</span>
+            <div class="confidence-wrap">
+              <label class="form-label tiny">Confidence</label>
+              <input type="range" min="50" max="99" value="75" class="confidence-slider" />
+              <span class="conf-val">75%</span>
+            </div>
+          </div>
+          <button class="btn-primary full">Stake on Yes →</button>
+          <div class="market-pool">Total pool: 14.2 AVAX · Capital preserved on loss</div>
+        </div>
+
+        <div class="market-card">
+          <div class="market-category">📊 Verification Milestone</div>
+          <div class="market-title">AVAJAZ reaches 5,000 verified trees before Q3 2026</div>
+          <div class="market-meta">Resolves Sep 1, 2026 · 89 stakers</div>
+          <div class="market-options">
+            <button class="market-opt yes">
+              <span class="opt-label">Yes</span>
+              <span class="opt-pct">54%</span>
+            </button>
+            <button class="market-opt no">
+              <span class="opt-label">No</span>
+              <span class="opt-pct">46%</span>
+            </button>
+          </div>
+          <div class="market-pool">Total pool: 8.7 AVAX</div>
+          <button class="btn-secondary full">Stake →</button>
+        </div>
+
+        <div class="market-card">
+          <div class="market-category">☕ Commodity Price</div>
+          <div class="market-title">Kenyan AA coffee export price exceeds $5.20/kg in April 2026</div>
+          <div class="market-meta">Resolves Apr 30, 2026 · 203 stakers</div>
+          <div class="market-options">
+            <button class="market-opt yes">
+              <span class="opt-label">Yes</span>
+              <span class="opt-pct">71%</span>
+            </button>
+            <button class="market-opt no">
+              <span class="opt-label">No</span>
+              <span class="opt-pct">29%</span>
+            </button>
+          </div>
+          <div class="market-pool">Total pool: 31.5 AVAX</div>
+          <button class="btn-secondary full">Stake →</button>
+        </div>
+
+        <div class="market-card">
+          <div class="market-category">📈 Platform Growth</div>
+          <div class="market-title">Active verifiers exceeds 500 by end of pilot year</div>
+          <div class="market-meta">Resolves Dec 31, 2026 · 67 stakers</div>
+          <div class="market-options">
+            <button class="market-opt yes">
+              <span class="opt-label">Yes</span>
+              <span class="opt-pct">61%</span>
+            </button>
+            <button class="market-opt no">
+              <span class="opt-label">No</span>
+              <span class="opt-pct">39%</span>
+            </button>
+          </div>
+          <div class="market-pool">Total pool: 5.1 AVAX</div>
+          <button class="btn-secondary full">Stake →</button>
+        </div>
+      </div>
+
+      <div class="card my-stakes">
+        <div class="card-header">
+          <h2 class="card-title">My Active Stakes</h2>
+        </div>
+        <table class="stakes-table">
+          <thead>
+            <tr><th>Market</th><th>Position</th><th>Staked</th><th>Confidence</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Kiambu coffee survival</td>
+              <td><span class="position yes">Yes</span></td>
+              <td>0.10 AVAX</td>
+              <td>75%</td>
+              <td><span class="status-badge pending">Pending</span></td>
+            </tr>
+            <tr>
+              <td>5,000 trees before Q3</td>
+              <td><span class="position yes">Yes</span></td>
+              <td>0.05 AVAX</td>
+              <td>60%</td>
+              <td><span class="status-badge pending">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PAGE: PROFILE -->
+    <section class="page" id="page-profile">
+      <div class="page-header">
+        <div>
+          <div class="page-eyebrow">Your Identity</div>
+          <h1 class="page-title">My Profile</h1>
+        </div>
+      </div>
+
+      <div class="profile-layout">
+        <div class="profile-sidebar-card card">
+          <div class="profile-avatar-large">JM</div>
+          <div class="profile-name">James Mwangi</div>
+          <div class="profile-phone">+254 712 345 678</div>
+          <div class="tier-badge-large beginner">BEGINNER</div>
+          <div class="profile-wallet">
+            <div class="wallet-label">Wallet</div>
+            <div class="wallet-addr">0x4f2a…8d3c</div>
+          </div>
+          <div class="profile-joined">Member since Jan 2026</div>
+          <button class="btn-secondary full">Edit Profile</button>
+        </div>
+
+        <div class="profile-main">
+          <!-- Tier Progress Card -->
+          <div class="card">
+            <h2 class="card-title">Tier Progression</h2>
+            <div class="tier-track">
+              <div class="tier-node active">
+                <div class="tier-circle done">✓</div>
+                <div class="tier-node-label">Beginner</div>
+              </div>
+              <div class="tier-line filled"></div>
+              <div class="tier-node current">
+                <div class="tier-circle pulse"></div>
+                <div class="tier-node-label">Intermediate</div>
+              </div>
+              <div class="tier-line"></div>
+              <div class="tier-node">
+                <div class="tier-circle locked">🔒</div>
+                <div class="tier-node-label">Expert</div>
+              </div>
+            </div>
+            <div class="tier-criteria-list">
+              <div class="criterion-row done">
+                <span class="crit-icon">✓</span>
+                <span>10 verifications approved</span>
+                <span class="crit-val">47 / 10</span>
+              </div>
+              <div class="criterion-row done">
+                <span class="crit-icon">✓</span>
+                <span>5 chess games played</span>
+                <span class="crit-val">18 / 5</span>
+              </div>
+              <div class="criterion-row ready">
+                <span class="crit-icon">🎉</span>
+                <span>Ready to upgrade!</span>
+                <button class="btn-primary small">Upgrade Now</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-grid four">
+            <div class="mini-stat">
+              <div class="mini-stat-val">47</div>
+              <div class="mini-stat-label">Trees Verified</div>
+            </div>
+            <div class="mini-stat">
+              <div class="mini-stat-val">2.43</div>
+              <div class="mini-stat-label">AVAX Earned</div>
+            </div>
+            <div class="mini-stat">
+              <div class="mini-stat-val">1,340</div>
+              <div class="mini-stat-label">Chess ELO</div>
+            </div>
+            <div class="mini-stat">
+              <div class="mini-stat-val">80%</div>
+              <div class="mini-stat-label">Prediction Accuracy</div>
+            </div>
+          </div>
+
+          <!-- Reputation -->
+          <div class="card">
+            <h2 class="card-title">Reputation Score</h2>
+            <div class="rep-score-row">
+              <div class="rep-circle">
+                <svg viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="44" fill="none" stroke="#f0e8d8" stroke-width="8"/>
+                  <circle cx="50" cy="50" r="44" fill="none" stroke="#D4620A" stroke-width="8"
+                    stroke-dasharray="185 92" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+                </svg>
+                <div class="rep-num">72</div>
+              </div>
+              <div class="rep-breakdown">
+                <div class="rep-row"><span>Verification quality</span><span class="rep-pts">+38</span></div>
+                <div class="rep-row"><span>Chess performance</span><span class="rep-pts">+22</span></div>
+                <div class="rep-row"><span>Prediction accuracy</span><span class="rep-pts">+12</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE: WALLET -->
+    <section class="page" id="page-wallet">
+      <div class="page-header">
+        <div>
+          <div class="page-eyebrow">Your Earnings</div>
+          <h1 class="page-title">Wallet</h1>
+        </div>
+      </div>
+
+      <div class="wallet-hero card">
+        <div class="wallet-balance-section">
+          <div class="wallet-balance-label">Total Balance</div>
+          <div class="wallet-balance-avax">2.43 AVAX</div>
+          <div class="wallet-balance-kes">≈ KES 4,200</div>
+          <div class="wallet-addr-row">
+            <span class="wallet-addr-text">0x4f2a8b…8d3c</span>
+            <button class="btn-ghost tiny">Copy</button>
+          </div>
+        </div>
+        <div class="wallet-actions">
+          <button class="btn-primary">Withdraw AVAX</button>
+          <button class="btn-secondary">Transaction History</button>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <h2 class="card-title">Earnings Breakdown</h2>
+          <div class="earnings-chart">
+            <div class="bar-chart">
+              <div class="bar-group">
+                <div class="bar" style="height:70%" data-val="1.41 AVAX"></div>
+                <div class="bar-label">Verification</div>
+              </div>
+              <div class="bar-group">
+                <div class="bar gold" style="height:40%" data-val="0.72 AVAX"></div>
+                <div class="bar-label">Chess</div>
+              </div>
+              <div class="bar-group">
+                <div class="bar terracotta" style="height:20%" data-val="0.30 AVAX"></div>
+                <div class="bar-label">Predictions</div>
+              </div>
+            </div>
+          </div>
+          <div class="earnings-legend">
+            <div class="legend-item"><span class="legend-dot orange"></span>Verification: 1.41 AVAX</div>
+            <div class="legend-item"><span class="legend-dot gold"></span>Chess: 0.72 AVAX</div>
+            <div class="legend-item"><span class="legend-dot terracotta"></span>Predictions: 0.30 AVAX</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">Recent Transactions</h2>
+          <ul class="tx-list">
+            <li class="tx-item">
+              <div class="tx-icon green">↓</div>
+              <div class="tx-body">
+                <div class="tx-desc">Tree #TZ-00823 verified</div>
+                <div class="tx-date">Today, 10:24 AM</div>
+              </div>
+              <div class="tx-amount positive">+0.02 AVAX</div>
+            </li>
+            <li class="tx-item">
+              <div class="tx-icon gold">♟</div>
+              <div class="tx-body">
+                <div class="tx-desc">Chess win vs Amina K.</div>
+                <div class="tx-date">Today, 8:11 AM</div>
+              </div>
+              <div class="tx-amount positive">+0.06 AVAX</div>
+            </li>
+            <li class="tx-item">
+              <div class="tx-icon orange">◎</div>
+              <div class="tx-body">
+                <div class="tx-desc">Prediction staked</div>
+                <div class="tx-date">Yesterday, 3:00 PM</div>
+              </div>
+              <div class="tx-amount neutral">-0.10 AVAX</div>
+            </li>
+            <li class="tx-item">
+              <div class="tx-icon green">↓</div>
+              <div class="tx-body">
+                <div class="tx-desc">Tree #TZ-00801 verified</div>
+                <div class="tx-date">2 days ago</div>
+              </div>
+              <div class="tx-amount positive">+0.05 AVAX</div>
+            </li>
+            <li class="tx-item">
+              <div class="tx-icon green">↓</div>
+              <div class="tx-body">
+                <div class="tx-desc">Tree #TZ-00798 verified</div>
+                <div class="tx-date">3 days ago</div>
+              </div>
+              <div class="tx-amount positive">+0.02 AVAX</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Withdraw Modal Trigger -->
+      <div class="card withdraw-card">
+        <h2 class="card-title">Withdraw AVAX</h2>
+        <div class="form-group">
+          <label class="form-label">Destination Wallet Address</label>
+          <input class="form-input" type="text" placeholder="0x..." />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Amount</label>
+          <div class="stake-input-row">
+            <input class="form-input" type="number" placeholder="0.00" max="2.43" />
+            <span class="avax-label">AVAX</span>
+            <button class="btn-ghost small">Max</button>
+          </div>
+        </div>
+        <div class="withdraw-note">⚠️ Withdrawals are irreversible. Double-check your wallet address.</div>
+        <button class="btn-primary">Confirm Withdrawal →</button>
+      </div>
+    </section>
+
+  </main><!-- /main-content -->
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

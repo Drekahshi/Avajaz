@@ -1,0 +1,36 @@
+
+> frontend@0.0.0 lint
+> eslint .
+
+
+C:\Users\Austin NAMUYE\OneDrive\Desktop\AVAJAZ\frontend\src\components\PhotoVerificationGame.tsx
+   8:16  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  59:23  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Austin NAMUYE\OneDrive\Desktop\AVAJAZ\frontend\src\context\WalletContext.tsx
+   23:65  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+   52:35  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+   57:29  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+   61:39  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  103:27  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  104:27  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  107:33  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  108:31  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  109:31  error  Unexpected any. Specify a different type                                                                                        @typescript-eslint/no-explicit-any
+  122:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\Austin NAMUYE\OneDrive\Desktop\AVAJAZ\frontend\src\pages\Dashboard.tsx
+  32:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  61:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Austin NAMUYE\OneDrive\Desktop\AVAJAZ\frontend\src\pages\PredictionsPage.tsx
+  64:56  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\Austin NAMUYE\OneDrive\Desktop\AVAJAZ\frontend\src\services\apiService.ts
+  11:42  error  'data' is defined but never used           @typescript-eslint/no-unused-vars
+  11:62  error  'walletAddress' is defined but never used  @typescript-eslint/no-unused-vars
+  22:38  error  'file' is defined but never used           @typescript-eslint/no-unused-vars
+  32:39  error  'walletAddress' is defined but never used  @typescript-eslint/no-unused-vars
+
+✖ 19 problems (19 errors, 0 warnings)
+

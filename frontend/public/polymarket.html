@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyAvajaza – Prediction Markets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--green:#27ae60;--gold:#f0c040;--red:#e84142;--blue:#3b82f6;--purple:#a855f7;--bg:#08090e;--surface:#0d1018;--surface2:#111520;--border:rgba(255,255,255,0.07)}
+    html,body{min-height:100vh;background:var(--bg);color:#fff;font-family:'Inter',sans-serif}
+    body{padding:0}
+
+    /* TOPBAR */
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid var(--border);background:rgba(13,16,24,0.9);backdrop-filter:blur(12px);position:sticky;top:0;z-index:50}
+    .logo{font-size:20px;font-weight:900;letter-spacing:-0.5px}.logo span:first-child{color:var(--green)}.logo span:last-child{color:var(--gold)}
+    .logo-sub{font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.15em;margin-top:1px}
+    .back-btn{text-decoration:none;color:rgba(255,255,255,0.4);font-size:13px;border:1px solid var(--border);padding:8px 16px;border-radius:10px;transition:all 0.2s}
+    .back-btn:hover{color:#fff;border-color:rgba(255,255,255,0.25)}
+    .live-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(39,174,96,0.1);border:1px solid rgba(39,174,96,0.3);padding:6px 12px;border-radius:30px;font-size:11px;font-weight:700;color:var(--green)}
+    .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 1.5s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+    /* CONTENT */
+    .container{max-width:1000px;margin:0 auto;padding:28px 20px}
+
+    /* STATS ROW */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+    @media(max-width:600px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+    .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px 18px}
+    .stat-label{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.15em;margin-bottom:6px}
+    .stat-val{font-size:22px;font-weight:900;font-family:'JetBrains Mono',monospace}
+
+    /* FILTER */
+    .filter-row{display:flex;gap:8px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+    .filter-btn{padding:8px 18px;border-radius:20px;font-size:12px;font-weight:700;border:1px solid var(--border);background:transparent;color:rgba(255,255,255,0.4);cursor:pointer;white-space:nowrap;transition:all 0.2s}
+    .filter-btn.active{background:rgba(39,174,96,0.12);border-color:rgba(39,174,96,0.5);color:var(--green)}
+    .filter-btn:hover:not(.active){color:#fff;border-color:rgba(255,255,255,0.2)}
+
+    /* MARKET CARDS */
+    .markets{display:flex;flex-direction:column;gap:16px}
+    .market-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.3s}
+    .market-card:hover{border-color:rgba(255,255,255,0.15);transform:translateY(-1px);box-shadow:0 12px 40px rgba(0,0,0,0.4)}
+    .market-header{display:flex;align-items:flex-start;justify-content:space-between;padding:20px 22px 0}
+    .market-category{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;padding:3px 10px;border-radius:20px;margin-bottom:8px;display:inline-block}
+    .cat-env{background:rgba(39,174,96,0.1);color:var(--green);border:1px solid rgba(39,174,96,0.25)}
+    .cat-token{background:rgba(59,130,246,0.1);color:var(--blue);border:1px solid rgba(59,130,246,0.25)}
+    .cat-game{background:rgba(168,85,247,0.1);color:var(--purple);border:1px solid rgba(168,85,247,0.25)}
+    .cat-eco{background:rgba(240,192,64,0.1);color:var(--gold);border:1px solid rgba(240,192,64,0.25)}
+    .market-title{font-size:16px;font-weight:700;line-height:1.3;margin-bottom:4px}
+    .market-meta{font-size:12px;color:rgba(255,255,255,0.35)}
+    .market-ends{font-size:12px;color:rgba(255,255,255,0.4);white-space:nowrap;margin-left:12px;flex-shrink:0}
+
+    /* ODDS BAR */
+    .odds-section{padding:14px 22px;display:flex;flex-direction:column;gap:10px}
+    .odds-bar-bg{height:10px;background:rgba(255,255,255,0.06);border-radius:999px;overflow:hidden}
+    .odds-bar{height:100%;border-radius:999px;transition:width 1s cubic-bezier(0.16,1,0.3,1)}
+    .odds-row{display:flex;justify-content:space-between;font-size:12px;font-weight:600}
+    .yes-label{color:var(--green)} .no-label{color:var(--red)}
+
+    /* BETTING */
+    .bet-section{padding:0 22px 20px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    @media(max-width:500px){.bet-section{grid-template-columns:1fr}}
+    .bet-side{background:var(--surface2);border:1px solid var(--border);border-radius:14px;padding:14px}
+    .bet-side-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px}
+    .bet-side.yes-side{border-color:rgba(39,174,96,0.15)} .bet-side.yes-side .bet-side-label{color:var(--green)}
+    .bet-side.no-side{border-color:rgba(232,65,66,0.15)} .bet-side.no-side .bet-side-label{color:var(--red)}
+    .bet-input-row{display:flex;gap:6px}
+    .bet-in{flex:1;background:rgba(0,0,0,0.4);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:#fff;font-size:13px;font-family:'JetBrains Mono',monospace;font-weight:700;outline:none;width:100%}
+    .bet-in:focus{border-color:rgba(255,255,255,0.3)}
+    .bet-btn{border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+    .bet-btn.yes{background:rgba(39,174,96,0.2);color:var(--green);border:1px solid rgba(39,174,96,0.3)}
+    .bet-btn.yes:hover{background:rgba(39,174,96,0.35)}
+    .bet-btn.no{background:rgba(232,65,66,0.15);color:var(--red);border:1px solid rgba(232,65,66,0.3)}
+    .bet-btn.no:hover{background:rgba(232,65,66,0.3)}
+    .payout-est{font-size:11px;color:rgba(255,255,255,0.35);margin-top:6px;font-family:'JetBrains Mono',monospace}
+
+    /* MARKET FOOTER */
+    .market-footer{padding:12px 22px;border-top:1px solid var(--border);display:flex;gap:20px;align-items:center}
+    .mf-item{display:flex;flex-direction:column;gap:2px}
+    .mf-label{font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em}
+    .mf-val{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace}
+    .expand-btn{margin-left:auto;background:transparent;border:1px solid var(--border);border-radius:8px;padding:6px 14px;color:rgba(255,255,255,0.4);font-size:12px;cursor:pointer;transition:all 0.2s}
+    .expand-btn:hover{color:#fff;border-color:rgba(255,255,255,0.3)}
+
+    /* MY BETS SIDEBAR */
+    .layout{display:grid;grid-template-columns:1fr 280px;gap:20px;align-items:start}
+    @media(max-width:780px){.layout{grid-template-columns:1fr}}
+    .sidebar{position:sticky;top:90px}
+    .sidebar-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:20px}
+    .sidebar-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:rgba(255,255,255,0.35);margin-bottom:14px}
+    .my-bet-item{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-bottom:8px}
+    .mbi-market{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:4px;line-height:1.3}
+    .mbi-row{display:flex;justify-content:space-between;align-items:center}
+    .mbi-side{font-size:12px;font-weight:700}
+    .mbi-amount{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace}
+
+    /* TOAST */
+    .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid rgba(39,174,96,0.4);border-radius:12px;padding:12px 22px;font-size:13px;font-weight:600;z-index:999;opacity:0;transition:opacity 0.3s;pointer-events:none;white-space:nowrap}
+    .toast.show{opacity:1}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div>
+      <div class="logo"><span>Poly</span><span>Avajaza</span></div>
+      <div class="logo-sub">Prediction Markets on Avalanche</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="live-badge"><div class="dot"></div>8 Live Markets</div>
+      <a href="/dashboard/games" class="back-btn">← Hub</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-label">Total Volume</div><div class="stat-val" style="color:var(--gold)">48,204</div><div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">AVAX</div></div>
+      <div class="stat-card"><div class="stat-label">Open Interest</div><div class="stat-val" style="color:var(--green)">3,402</div><div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">AVAX</div></div>
+      <div class="stat-card"><div class="stat-label">Active Bettors</div><div class="stat-val" style="color:var(--blue)">1,187</div><div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">Wallets</div></div>
+      <div class="stat-card"><div class="stat-label">Avg. Return</div><div class="stat-val" style="color:var(--purple)">2.4×</div><div style="font-size:11px;color:rgba(255,255,255,0.3);margin-top:2px">Per Correct Bet</div></div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-row" id="filters">
+      <button class="filter-btn active" onclick="filterCat('all',this)">All Markets</button>
+      <button class="filter-btn" onclick="filterCat('env',this)">🌿 Environmental</button>
+      <button class="filter-btn" onclick="filterCat('token',this)">🔵 Token Price</button>
+      <button class="filter-btn" onclick="filterCat('game',this)">🎮 Game Outcomes</button>
+      <button class="filter-btn" onclick="filterCat('eco',this)">🌍 Ecosystem</button>
+    </div>
+
+    <div class="layout">
+      <div class="markets" id="markets-list"></div>
+
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-card">
+          <div class="sidebar-title">My Active Bets</div>
+          <div id="my-bets"><div style="color:rgba(255,255,255,0.3);font-size:13px;padding:8px 0">No bets placed yet.</div></div>
+          <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:14px">
+            <div class="sidebar-title">Portfolio</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.4)">Total Staked</span><span style="font-family:'JetBrains Mono';font-weight:700;color:var(--gold)" id="total-staked">0.000 AVAX</span></div>
+              <div style="display:flex;justify-content:space-between;font-size:13px"><span style="color:rgba(255,255,255,0.4)">Potential Win</span><span style="font-family:'JetBrains Mono';font-weight:700;color:var(--green)" id="potential-win">0.000 AVAX</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script>
+const MARKETS = [
+  { id:1, cat:'env', catLabel:'Environmental', catClass:'cat-env', title:'Will the Kilifi mangrove restoration reach 500 validated trees by April 2026?', meta:'Kelvin Mwangi • CFA Region 4', ends:'Apr 15, 2026', yes:71, vol:'892 AVAX', liquidity:'204 AVAX', bettors:142 },
+  { id:2, cat:'token', catLabel:'Token Price', catClass:'cat-token', title:'Will AVAX trade above $45 USD on March 31st, 2026?', meta:'Price Oracle • Chainlink Data', ends:'Mar 31, 2026', yes:58, vol:'2,104 AVAX', liquidity:'780 AVAX', bettors:491 },
+  { id:3, cat:'env', catLabel:'Environmental', catClass:'cat-env', title:'Will Aberdare apiary batch #4 produce >100 kg honey yield in Q1 2026?', meta:'Sarah Njeri • CFA Region 2', ends:'Mar 28, 2026', yes:44, vol:'340 AVAX', liquidity:'98 AVAX', bettors:67 },
+  { id:4, cat:'game', catLabel:'Game Outcome', catClass:'cat-game', title:'Will a new player beat the grandmaster AI in AvajazChess before April 1?', meta:'Chess Contract • Smart Oracle', ends:'Apr 1, 2026', yes:32, vol:'1,220 AVAX', liquidity:'512 AVAX', bettors:220 },
+  { id:5, cat:'eco', catLabel:'Ecosystem', catClass:'cat-eco', title:'Will AVAJAZ reach 2,000 total activity verifications by end of March 2026?', meta:'Platform Data • Auto-resolve', ends:'Mar 31, 2026', yes:63, vol:'458 AVAX', liquidity:'130 AVAX', bettors:108 },
+  { id:6, cat:'token', catLabel:'Token Price', catClass:'cat-token', title:'Will Avalanche mainnet TVL exceed $1.2B by end of Q1 2026?', meta:'DeFiLlama Oracle • Auto-resolve', ends:'Mar 31, 2026', yes:48, vol:'3,802 AVAX', liquidity:'1,204 AVAX', bettors:644 },
+];
+
+let myBets = [], totalStaked = 0;
+let activeFilter = 'all';
+
+function filterCat(cat, btn) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMarkets();
+}
+
+function renderMarkets() {
+  const list = document.getElementById('markets-list');
+  const markets = activeFilter === 'all' ? MARKETS : MARKETS.filter(m => m.cat === activeFilter);
+  list.innerHTML = '';
+  markets.forEach(m => {
+    const no = 100 - m.yes;
+    const yesOdds = (100 / m.yes).toFixed(2);
+    const noOdds = (100 / no).toFixed(2);
+    list.innerHTML += `
+    <div class="market-card" id="mc-${m.id}">
+      <div class="market-header">
+        <div>
+          <div class="market-category ${m.catClass}">${m.catLabel}</div>
+          <div class="market-title">${m.title}</div>
+          <div class="market-meta">${m.meta}</div>
+        </div>
+        <div class="market-ends">⏱ ${m.ends}</div>
+      </div>
+      <div class="odds-section">
+        <div class="odds-row">
+          <span class="yes-label">YES ${m.yes}% &nbsp;· ${yesOdds}×</span>
+          <span class="no-label">NO ${no}% &nbsp;· ${noOdds}×</span>
+        </div>
+        <div class="odds-bar-bg">
+          <div class="odds-bar" style="width:${m.yes}%;background:linear-gradient(90deg,#27ae60,#34d399)"></div>
+        </div>
+      </div>
+      <div class="bet-section">
+        <div class="bet-side yes-side">
+          <div class="bet-side-label">Bet YES · ${yesOdds}× return</div>
+          <div class="bet-input-row">
+            <input class="bet-in" type="number" placeholder="AVAX" step="0.01" min="0.01" id="yes-in-${m.id}" />
+            <button class="bet-btn yes" onclick="placeBet(${m.id},'YES',${yesOdds})">Bet</button>
+          </div>
+          <div class="payout-est" id="yes-est-${m.id}">Est. payout: —</div>
+        </div>
+        <div class="bet-side no-side">
+          <div class="bet-side-label">Bet NO · ${noOdds}× return</div>
+          <div class="bet-input-row">
+            <input class="bet-in" type="number" placeholder="AVAX" step="0.01" min="0.01" id="no-in-${m.id}" />
+            <button class="bet-btn no" onclick="placeBet(${m.id},'NO',${noOdds})">Bet</button>
+          </div>
+          <div class="payout-est" id="no-est-${m.id}">Est. payout: —</div>
+        </div>
+      </div>
+      <div class="market-footer">
+        <div class="mf-item"><div class="mf-label">Volume</div><div class="mf-val" style="color:var(--gold)">${m.vol}</div></div>
+        <div class="mf-item"><div class="mf-label">Liquidity</div><div class="mf-val">${m.liquidity}</div></div>
+        <div class="mf-item"><div class="mf-label">Bettors</div><div class="mf-val">${m.bettors}</div></div>
+        <button class="expand-btn" onclick="this.textContent = this.textContent==='Details ↓'?'Hide ↑':'Details ↓'">Details ↓</button>
+      </div>
+    </div>`;
+  });
+
+  // Add live payout preview listeners
+  markets.forEach(m => {
+    const yesIn = document.getElementById(`yes-in-${m.id}`);
+    const noIn = document.getElementById(`no-in-${m.id}`);
+    const no = 100 - m.yes;
+    if (yesIn) yesIn.addEventListener('input', () => {
+      const v = parseFloat(yesIn.value);
+      document.getElementById(`yes-est-${m.id}`).textContent = v > 0 ? `Est. payout: ${(v*(100/m.yes)).toFixed(3)} AVAX` : 'Est. payout: —';
+    });
+    if (noIn) noIn.addEventListener('input', () => {
+      const v = parseFloat(noIn.value);
+      document.getElementById(`no-est-${m.id}`).textContent = v > 0 ? `Est. payout: ${(v*(100/no)).toFixed(3)} AVAX` : 'Est. payout: —';
+    });
+  });
+}
+
+function placeBet(marketId, side, odds) {
+  const inEl = document.getElementById(`${side.toLowerCase()}-in-${marketId}`);
+  const val = parseFloat(inEl.value);
+  if (!val || val <= 0) { showToast('Enter a valid AVAX amount!'); return; }
+  const market = MARKETS.find(m => m.id === marketId);
+  const payout = (val * odds).toFixed(3);
+  myBets.push({ market: market.title.substring(0,52)+'…', side, amount: val, payout });
+  totalStaked += val;
+  inEl.value = '';
+  document.getElementById(`${side.toLowerCase()}-est-${marketId}`).textContent = 'Est. payout: —';
+  updateSidebar();
+  showToast(`✅ ${val} AVAX bet on ${side}! Potential: ${payout} AVAX`);
+}
+
+function updateSidebar() {
+  const el = document.getElementById('my-bets');
+  if (!myBets.length) { el.innerHTML = '<div style="color:rgba(255,255,255,0.3);font-size:13px;padding:8px 0">No bets placed yet.</div>'; return; }
+  el.innerHTML = myBets.slice(-4).reverse().map(b => `
+    <div class="my-bet-item">
+      <div class="mbi-market">${b.market}</div>
+      <div class="mbi-row">
+        <span class="mbi-side" style="color:${b.side==='YES'?'var(--green)':'var(--red)'}">${b.side}</span>
+        <span class="mbi-amount">${b.amount.toFixed(3)} AVAX</span>
+      </div>
+    </div>`).join('');
+  const potWin = myBets.reduce((a,b) => a + parseFloat(b.payout), 0);
+  document.getElementById('total-staked').textContent = totalStaked.toFixed(3) + ' AVAX';
+  document.getElementById('potential-win').textContent = potWin.toFixed(3) + ' AVAX';
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+renderMarkets();
+</script>
+</body>
+</html>

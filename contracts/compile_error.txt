@@ -1,0 +1,13 @@
+An unexpected error occurred:
+
+ReferenceError: require is not defined in ES module scope, you can use import instead
+This file is being treated as an ES module because it has a '.js' file extension and 'C:\Users\Austin NAMUYE\OneDrive\Desktop\AVAJAZ\contracts\package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
+    at file:///C:/Users/Austin%20NAMUYE/OneDrive/Desktop/AVAJAZ/contracts/hardhat.config.js:1:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:647:26)
+    at async importConfigFileWithTsxFallback (C:\Users\Austin NAMUYE\OneDrive\Desktop\AVAJAZ\contracts\node_modules\hardhat\src\internal\config-loading.ts:145:14)
+    at async importUserConfig (C:\Users\Austin NAMUYE\OneDrive\Desktop\AVAJAZ\contracts\node_modules\hardhat\src\internal\config-loading.ts:80:20)
+    at async main (C:\Users\Austin NAMUYE\OneDrive\Desktop\AVAJAZ\contracts\node_modules\hardhat\src\internal\cli\main.ts:131:24)
+    at async file:///C:/Users/Austin%20NAMUYE/OneDrive/Desktop/AVAJAZ/contracts/node_modules/hardhat/dist/src/cli.js:21:1
+
+If you think this is a bug in Hardhat, please report it here: https://hardhat.org/report-bug

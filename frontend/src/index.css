@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+@theme {
+  --color-avax-red: #E84142;
+  --color-avax-dark: #0f0f1a;
+  --color-avax-surface: #1a1a2e;
+  --color-avax-border: #2a2a4a;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-avax-dark);
+    color: #ffffff;
+    font-family: Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}

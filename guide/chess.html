@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVAJAZ CHESS</title>
+  <link rel="stylesheet" href="chess.css" />
+</head>
+<body>
+
+  <!-- ─── HEADER ─── -->
+  <header class="site-header">
+    <div class="logo">
+      <div class="logo-emblem">AJ</div>
+      <div>
+        <div class="logo-title">AVAJAZ CHESS</div>
+        <div class="logo-sub">Play · Think · Conquer</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="badge" id="mode-badge">vs AI</span>
+      <button class="hdr-btn" id="btn-flip" title="Flip board">⇅</button>
+      <button class="hdr-btn primary" id="btn-new">New Game</button>
+    </div>
+  </header>
+
+  <!-- ─── MAIN ─── -->
+  <div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar left">
+
+      <div class="panel">
+        <div class="panel-label">SESSION</div>
+        <div class="score-grid">
+          <div class="score-cell"><span id="s-wins">0</span><small>Wins</small></div>
+          <div class="score-cell"><span id="s-draws">0</span><small>Draws</small></div>
+          <div class="score-cell"><span id="s-losses">0</span><small>Losses</small></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label">ADVANTAGE</div>
+        <div class="adv-label" id="adv-text">Even</div>
+        <div class="adv-track"><div class="adv-fill" id="adv-bar" style="width:50%"></div></div>
+        <div class="adv-ends"><span>♔ White</span><span>♟ Black</span></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label">CONTROLS</div>
+        <button class="ctrl-btn full" id="btn-new2">⊕ New Game</button>
+        <div class="ctrl-row">
+          <button class="ctrl-btn" id="btn-hint">💡 Hint</button>
+          <button class="ctrl-btn" id="btn-draw">🤝 Draw</button>
+        </div>
+        <div class="ctrl-row">
+          <button class="ctrl-btn" id="btn-pgn">📋 PGN</button>
+          <button class="ctrl-btn danger" id="btn-resign">🏳 Resign</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-label">GAME STATS</div>
+        <div class="stat-row"><span>Moves</span><span id="g-moves">0</span></div>
+        <div class="stat-row"><span>Captures</span><span id="g-caps">0</span></div>
+        <div class="stat-row"><span>Checks</span><span id="g-checks">0</span></div>
+      </div>
+
+    </aside>
+
+    <!-- CENTER BOARD AREA -->
+    <div class="center">
+
+      <!-- Black player -->
+      <div class="player-strip">
+        <div class="avatar av-black" id="av-black">AI</div>
+        <div class="player-meta">
+          <div class="player-name" id="name-black">AI Opponent</div>
+          <div class="captured-row" id="cap-by-white"></div>
+        </div>
+        <div class="clock" id="clock-black">10:00</div>
+      </div>
+
+      <!-- Board -->
+      <div class="board-frame">
+        <div class="board" id="board"></div>
+      </div>
+
+      <!-- White player -->
+      <div class="player-strip">
+        <div class="avatar av-white" id="av-white">You</div>
+        <div class="player-meta">
+          <div class="player-name" id="name-white">Player (White)</div>
+          <div class="captured-row" id="cap-by-black"></div>
+        </div>
+        <div class="clock" id="clock-white">10:00</div>
+      </div>
+
+      <div class="status-bar" id="status">Click "New Game" to start</div>
+      <div class="turn-pill" id="turn-pill">♔ White to move</div>
+
+    </div>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="sidebar right">
+
+      <div class="tabs">
+        <button class="tab active" data-tab="moves">Moves</button>
+        <button class="tab" data-tab="ai">AI Info</button>
+      </div>
+
+      <div class="tab-panel active" id="panel-moves">
+        <div class="panel">
+          <div class="panel-label">MOVE HISTORY</div>
+          <div class="move-list" id="move-list"></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="panel-ai">
+        <div class="panel">
+          <div class="panel-label">AI DIFFICULTY</div>
+          <div class="diff-row">
+            <button class="diff-btn" data-d="1">Easy</button>
+            <button class="diff-btn active" data-d="2">Medium</button>
+            <button class="diff-btn" data-d="3">Hard</button>
+            <button class="diff-btn" data-d="4">Expert</button>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">WIN PROBABILITY</div>
+          <div class="prob-row">
+            <span>♔</span>
+            <span id="prob-val">50% — 50%</span>
+            <span>♟</span>
+          </div>
+          <div class="prob-track"><div class="prob-fill" id="prob-bar" style="width:50%"></div></div>
+          <div class="best-move-box" id="best-move-box">Best move: —</div>
+        </div>
+        <div class="panel">
+          <div class="panel-label">SCORING</div>
+          <div class="stat-row"><span>Checkmate win</span><span class="green">+15</span></div>
+          <div class="stat-row"><span>Draw</span><span class="amber">+3</span></div>
+          <div class="stat-row"><span>Resign / Loss</span><span class="red">−5</span></div>
+          <div class="stat-row"><span>Hint used</span><span class="muted">−1</span></div>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- ─── TOAST ─── -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ─── MODALS ─── -->
+
+  <!-- New Game -->
+  <div class="overlay hidden" id="modal-new">
+    <div class="dialog">
+      <div class="dialog-title">New Game</div>
+      <div class="dialog-sub">Configure your match</div>
+
+      <div class="form-group">
+        <div class="form-label">Game Mode</div>
+        <div class="toggle-row" id="mode-toggle">
+          <button class="tgl active" data-val="pvb">vs AI Bot</button>
+          <button class="tgl" data-val="pvp">vs Player</button>
+        </div>
+      </div>
+
+      <div class="form-group" id="diff-group">
+        <div class="form-label">AI Difficulty</div>
+        <div class="toggle-row" id="diff-toggle">
+          <button class="tgl" data-val="1">Easy</button>
+          <button class="tgl active" data-val="2">Medium</button>
+          <button class="tgl" data-val="3">Hard</button>
+          <button class="tgl" data-val="4">Expert</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-label">Time Control</div>
+        <div class="toggle-row" id="time-toggle">
+          <button class="tgl" data-val="180">3 min</button>
+          <button class="tgl active" data-val="600">10 min</button>
+          <button class="tgl" data-val="1800">30 min</button>
+          <button class="tgl" data-val="0">Unlimited</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-label">Stake (AVAX)</div>
+        <input
+          id="stake-input"
+          class="form-input"
+          type="number"
+          min="0.1"
+          max="0.1001"
+          step="0.0001"
+          value="0.1"
+        />
+        <div style="font-size:11px;color:var(--c-muted);margin-top:4px;">
+          Allowed range: 0.10 – 0.1001 AVAX
+        </div>
+      </div>
+
+      <button class="dlg-btn primary" id="btn-start">Start Game ♟</button>
+      <button class="dlg-btn ghost" id="btn-cancel-new">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Promotion -->
+  <div class="overlay hidden" id="modal-promo">
+    <div class="dialog" style="max-width:300px">
+      <div class="dialog-title">Promote Pawn</div>
+      <div class="dialog-sub">Choose a piece</div>
+      <div class="promo-grid">
+        <button class="promo-piece" data-p="q">♕<span>Queen</span></button>
+        <button class="promo-piece" data-p="r">♖<span>Rook</span></button>
+        <button class="promo-piece" data-p="b">♗<span>Bishop</span></button>
+        <button class="promo-piece" data-p="n">♘<span>Knight</span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Over -->
+  <div class="overlay hidden" id="modal-over">
+    <div class="dialog gameover-dialog">
+      <div class="go-icon" id="go-icon">♟</div>
+      <div class="go-title" id="go-title">Game Over</div>
+      <div class="go-sub" id="go-sub"></div>
+      <div class="go-stats">
+        <div class="go-stat"><span id="go-moves">0</span><small>Moves</small></div>
+        <div class="go-stat"><span id="go-wins">0</span><small>Wins</small></div>
+      </div>
+      <button class="dlg-btn primary" id="btn-go-new">Play Again ♟</button>
+      <button class="dlg-btn ghost" id="btn-go-close">Close</button>
+    </div>
+  </div>
+
+  <!-- Resign Confirm (PvP) -->
+  <div class="overlay hidden" id="modal-resign">
+    <div class="dialog" style="max-width:280px">
+      <div class="dialog-title">Resign</div>
+      <div class="dialog-sub">Who gives up?</div>
+      <div style="display:flex;gap:10px;justify-content:center">
+        <button class="dlg-btn danger" id="resign-white">♔ White</button>
+        <button class="dlg-btn danger" id="resign-black">♟ Black</button>
+      </div>
+      <button class="dlg-btn ghost" id="btn-cancel-resign" style="margin-top:10px">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+  <script src="chess.js"></script>
+</body>
+</html>
