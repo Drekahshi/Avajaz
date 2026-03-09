@@ -104,7 +104,7 @@ textAll layers built natively on Avalanche C-Chain.
 
 ## Roadmap
 
-**Years 1–2 (Pilot)** — Partner with 2–3 established CFAs (Karura, Kakamega, Arabuko-Sokoke). Target: 50 000 verified trees, 500 nursery batches, 200 hive locations, 3 ecotourism zones.  
+**Years 1–2 (Pilot)** — Partner with 2–3 established CFAs ( Oloolua ,Karura,BUsia, Kakamega, Arabuko-Sokoke). Target: 50 000 verified trees, 500 nursery batches, 200 hive locations, 3 ecotourism zones.  
 
 **Years 3–5 (National)** — Expand across all KFS-registered CFAs. Full commodity traceability for honey, seedlings, ecotourism.  
 
@@ -125,4 +125,5 @@ Sub-second finality for frequent verification updates, near-zero fees for micro-
 CBO members are already doing the work. AVAJAZ makes the world pay for it — on Avalanche.  
 
 This is how Kenya’s Community Forest Associations turn government-recognized stewardship into verifiable economic power at continental scale.
+
 
