@@ -327,7 +327,7 @@ Built for the **Avalanche Builderthon** by the AVAJAZ team — combining experti
 - **CIFOR-ICRAF** — Trees-as-products research framework
 - **Jaza Miti** — Government tree registration infrastructure
 - **Avalanche** — Blockchain infrastructure
--  **OLOOLUA FOREST TURACO CAMP** — DAta collection and testing
+-  **OLOOLUA FOREST TURACO CAMP** — Data collection and testing
 ---
 
 ## License
