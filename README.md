@@ -105,7 +105,7 @@ Four interconnected games fill the gaps between seasonal verification cycles and
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                    CLIENT LAYER                         │
-│        Android App · WhatsApp Bot · Telegram Bot        │
+│                     WEB APP       │
 └──────────────────────┬──────────────────────────────────┘
                        │
 ┌──────────────────────▼──────────────────────────────────┐
@@ -235,24 +235,11 @@ avajaz/
 │   ├── GameController.sol
 │   ├── TreasuryContract.sol
 │   └── GovernanceContract.sol
-├── agents/
-│   ├── verification-agent/     # GPS validation, duplicate detection, AI scoring
-│   ├── game-agent/             # Chess engine, ELO, Prediction Market settlement
-│   └── oracle-agent/           # Phase 2: weather + satellite feeds
-├── app/
-│   └── android/                # Smartphone client for CBO members
-├── api/
-│   └── gateway/                # REST API, auth, geo-validation, media processing
-├── subgraph/
-│   └── avajaz/                 # The Graph indexing for on-chain activity queries
-├── docs/
-│   └── whitepapers/            # All 8 PRD documents
-├── scripts/
-│   ├── deploy.js               # Deployment scripts (Fuji testnet + mainnet)
-│   └── seed.js                 # Test data seeding for demo
-├── test/
+├──  FRONTEND             # Deployment scripts (Fuji testnet + mainnet)
+│   └──                 # Test data seeding for demo
+├── BACKEND/
 │   └── ...                     # Contract unit tests
-└── README.md
+└── CONTRACTS.md
 ```
 
 ---
@@ -284,7 +271,7 @@ npx hardhat run scripts/deploy.js --network fuji
 
 ### Run Tests
 ```bash
-npx hardhat test
+npm run app
 ```
 
 ### Seed Demo Data
@@ -324,6 +311,7 @@ Phase 4 — Continental (Year 6–10)
 
 Built for the **Avalanche Builderthon** by the AVAJAZ team — combining expertise in Web3 infrastructure, community forestry, and African smallholder economics.
 
+
 ---
 
 ## Partners & Acknowledgements
@@ -332,7 +320,7 @@ Built for the **Avalanche Builderthon** by the AVAJAZ team — combining experti
 - **CIFOR-ICRAF** — Trees-as-products research framework
 - **Jaza Miti** — Government tree registration infrastructure
 - **Avalanche** — Blockchain infrastructure
-
+**OLOOLUA FOREST TURACO CAMP** — DAta collection and testing
 ---
 
 ## License
