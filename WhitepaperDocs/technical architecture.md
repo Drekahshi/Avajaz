@@ -17,7 +17,7 @@ This document describes the full technical stack — smart contract architecture
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                    CLIENT LAYER                         │
-│   Android App · WhatsApp Bot · Telegram Bot             │
+│                   │WEB APP
 │   (Smartphone-first, social platform entry points)      │
 └──────────────────────┬──────────────────────────────────┘
                        │ HTTPS / WebSocket
@@ -424,4 +424,5 @@ All oracle submissions are signed by the Oracle Agent's private key. Verificatio
 | **Phase 1** | MVP contracts stable on testnet. Verification Agent + Game Agent live. Android app beta. |
 | **Phase 2** | Mainnet deployment. Live oracle integration. All four activity state machines active. The Graph full indexing. |
 | **Phase 3** | Multi-source oracle aggregation. Reputation scoring on-chain. KFS data bridge API. |
+
 | **Phase 4** | AVAJAZ Impact Subnet launch. Custom gas token. Government node integration. Warp Messaging to C-Chain. |
