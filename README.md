@@ -236,10 +236,10 @@ avajaz/
 │   ├── TreasuryContract.sol
 │   └── GovernanceContract.sol
 ├──  FRONTEND             # Deployment scripts (Fuji testnet + mainnet)
-│   └──                 # Test data seeding for demo
+│   └── images                 #oloolua conservation images
 ├── BACKEND/
-│   └── ...                     # Contract unit tests
-└── CONTRACTS.md
+│   └── guide             # ignore the folder        
+└──CONTRACTS.md
 ```
 
 ---
