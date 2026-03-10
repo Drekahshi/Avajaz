@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useWallet } from '../context/WalletContext';
 import { submitActivityForm } from '../services/apiService';
+import { useAccount } from 'wagmi';
 
 const ActivityForm: React.FC = () => {
-  const { address } = useWallet();
+  const { address } = useAccount();
   const [formData, setFormData] = useState({
     type: 'tree_planting',
     cfaGroupId: '',

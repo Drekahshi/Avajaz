@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import WalletConnect from '../components/WalletConnect';
-import { useWallet } from '../context/WalletContext';
 import { Navigate } from 'react-router-dom';
+import { useAccount } from 'wagmi';
+import ConnectWalletButton from '../components/WalletConnect';
 
 const STATS = [
   { label: 'Verifications', value: '14,206' },
@@ -46,7 +46,7 @@ const FEATURES = [
 ];
 
 const LandingPage: React.FC = () => {
-  const { address } = useWallet();
+  const { address } = useAccount();
   const particleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -99,7 +99,7 @@ const LandingPage: React.FC = () => {
           <span className="text-avax-green">AVA</span><span className="text-avax-gold">JAZ</span>
           <span className="ml-2 text-xs font-mono text-avax-red bg-avax-red/10 border border-avax-red/30 px-1.5 py-0.5 rounded align-middle">FUJI</span>
         </div>
-        <WalletConnect className="text-sm px-6 py-2.5 rounded-xl font-bold" />
+         <ConnectWalletButton />
       </nav>
 
       {/* Hero */}
@@ -125,7 +125,7 @@ const LandingPage: React.FC = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <WalletConnect className="text-lg px-10 py-4 rounded-2xl font-extrabold shadow-[0_0_40px_rgba(39,174,96,0.25)] hover:shadow-[0_0_60px_rgba(39,174,96,0.4)]" />
+           <ConnectWalletButton />
           <a
             href="#features"
             className="text-gray-400 hover:text-white border border-white/10 hover:border-white/30 px-8 py-4 rounded-2xl transition-all text-sm font-medium"
