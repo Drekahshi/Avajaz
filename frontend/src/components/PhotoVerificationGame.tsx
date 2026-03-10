@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useWallet } from '../context/WalletContext';
-import { BrowserProvider, parseEther } from 'ethers';
+import { parseEther } from 'viem';
+import { useAccount, useBalance, useSendTransaction } from 'wagmi';
+
 
 // Declare ethereum on window for TS
 declare global {
@@ -13,20 +14,25 @@ const REWARD_AMOUNT_AVAX = '0.001';
 const REWARD_RECIPIENT = '0xB13727161583e38185530755a1A96D00fcCae870';
 
 const PhotoVerificationGame: React.FC = () => {
-  const { address, balance } = useWallet();
+  const { address } = useAccount();
   const [isProcessing, setIsProcessing] = useState(false);
   const [txHash, setTxHash] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Construct URL with wallet parameters and embed flag
-  const iframeSrc = `/guide/index.html?address=${address || ''}&balance=${balance || '0'}&embed=true`;
+  const { sendTransactionAsync } = useSendTransaction();
 
+  const { data: balanceData } = useBalance({
+    address
+  });
+
+  const balance = balanceData?.formatted ?? '0';
+
+  const iframeSrc = `/guide/index.html?address=${address || ''}&balance=${balance}&embed=true`;
   useEffect(() => {
     const handleIframeMessage = async (event: MessageEvent) => {
-      // Allow messages from the same origin (the iframe)
       if (event.data?.type === 'VERIFICATION_SUCCESS') {
         console.log('Verification Success received from iframe:', event.data.payload);
-        
+
         if (!address) {
           setError("Wallet not connected. Connect to receive rewards.");
           return;
@@ -37,32 +43,19 @@ const PhotoVerificationGame: React.FC = () => {
           setError(null);
           setTxHash(null);
 
-          // Get provider from MetaMask
-          if (!window.ethereum) throw new Error("MetaMask not found!");
-          const provider = new BrowserProvider(window.ethereum);
-          const signer = await provider.getSigner();
-
           console.log(`Sending ${REWARD_AMOUNT_AVAX} AVAX to ${REWARD_RECIPIENT}...`);
 
-          // Send transaction
-          const tx = await signer.sendTransaction({
+          const hash = await sendTransactionAsync({
             to: REWARD_RECIPIENT,
-            value: parseEther(REWARD_AMOUNT_AVAX)
+            value: parseEther(REWARD_AMOUNT_AVAX),
           });
 
-          console.log('Transaction sent:', tx.hash);
-          setTxHash(tx.hash);
-          
-          // Optional: Wait for confirmation
-          // await tx.wait();
-          
+          console.log('Transaction sent:', hash);
+          setTxHash(hash);
+
         } catch (err: unknown) {
           console.error("Reward transaction failed:", err);
-          if (err instanceof Error) {
-            setError(err.message || "Transaction failed");
-          } else {
-            setError("Transaction failed");
-          }
+          setError(err instanceof Error ? err.message : "Transaction failed");
         } finally {
           setIsProcessing(false);
         }
@@ -71,7 +64,7 @@ const PhotoVerificationGame: React.FC = () => {
 
     window.addEventListener('message', handleIframeMessage);
     return () => window.removeEventListener('message', handleIframeMessage);
-  }, [address]);
+  }, [address, sendTransactionAsync]);
 
   return (
     <div className="flex flex-col h-[calc(100vh-120px)] bg-avax-surface rounded-2xl border border-avax-border shadow-2xl overflow-hidden relative">
