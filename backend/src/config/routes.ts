@@ -6,7 +6,7 @@ interface PublicRoute {
 }
 
 export const PUBLIC_ROUTES: PublicRoute[] = [
-//   { path: '/api/v1/hello', method: 'GET' },
+  { path: '/api/v1/users/connect', method: 'POST' },
 
   // actuator
   { path: '/health', method: 'GET' },

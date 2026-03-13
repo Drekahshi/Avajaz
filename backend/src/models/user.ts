@@ -18,9 +18,6 @@ export class User extends Domain {
   @Column({ default: false, name: 'is_active' })
   isActive!: boolean;
 
-  @Column({ name: 'password',  nullable: true })
-  password?: string;
-
   @OneToMany(() => Token, (token) => token.user)
   tokens!: Token[];
 

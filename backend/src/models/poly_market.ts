@@ -20,11 +20,11 @@ export class PolymarketStake extends Domain {
   @Column({ default: false, name: 'is_active' })
   isActive!: boolean;
 
-  @Column({ name: 'payout', type: 'decimal', precision: 18, scale: 6, nullable: true })
-  payout!: number | null;
+  @Column({ name: 'payout', type: 'decimal', precision: 18, scale: 6})
+  payout!: number;
 
-  @Column({ name: 'tx_hash', nullable: true })
-  txHash!: string | null;
+  @Column({ name: 'tx_hash' })
+  txHash!: string;
 
   @ManyToOne(() => User, (user) => user.polymarketStakes, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })

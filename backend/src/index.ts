@@ -1,20 +1,20 @@
 import express, { Request, Response, NextFunction } from 'express';
 import cors from "cors";
-import fs from "fs";
-import path from "path";
 import { AppDataSource } from './config/db';
 import { env } from './config/env';
 import { authMiddleware } from './middleware/auth';
 import actuator from 'express-actuator';
+import UserRouter from "./controller/user";
 
 const app = express();
 const PORT = env.port;
 
 
-app.use(cors({ exposedHeaders: ['x-error-type'], }));
-app.use(express.json());
-app.use(authMiddleware);
-app.use(actuator());
+app.use(cors({ exposedHeaders: ['x-error-type'] }));
+app.use(express.json());        // 1. parse body FIRST
+app.use(authMiddleware);        // 2. then auth
+app.use(actuator());            // 3. then actuator
+app.use(`${env.apiVersion}/users`, UserRouter); // 4. then routes
 
 app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   if (err.type === 'entity.parse.failed') {
